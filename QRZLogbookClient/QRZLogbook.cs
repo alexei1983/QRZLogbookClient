@@ -41,7 +41,7 @@ namespace QRZLogbookClient {
       if (new QRZLogbookDeleteRequest(Key) { LogIDs = logIDs }.Execute() is QRZDeleteResponse result) {
 
         if (QRZResult.Partial.Equals(result.Result) && result.LogIDs?.Length > 0)
-          throw new InvalidOperationException($"QRZ Error: {result.LogIDs.Length} records not found while attempting delete operation.");
+          throw new InvalidOperationException($"QRZ Error: {result.LogIDs.Length} record(s) not found while attempting delete operation.");
         else if (QRZResult.Fail.Equals(result.Result))
           throw new InvalidOperationException($"QRZ Error: {result.Reason ?? string.Empty}");
 
